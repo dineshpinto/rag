@@ -84,3 +84,33 @@ _N.B._ Other vector databases can be used, provided they run within the same Doc
   * Optimizes the Context Window to balance the amount of information sent to LLMs.
   * Includes Source Verification Mechanisms to assess and validate the reliability of the data sources.
 * **Improved Retrieval & Response Pipelines**: Integrate hybrid search techniques (combining semantic and keyword-based methods) for better retrieval, and implement completion checks to verify that the responder’s output is complete and accurate (potentially allow an iterative feedback loop for refining the final answer).
+
+
+```bash
+gcloud compute instances create $INSTANCE_NAME \
+  --project=verifiable-ai-hackathon \
+  --zone=us-central1-c \
+  --machine-type=n2d-standard-2 \
+  --network-interface=network-tier=PREMIUM,nic-type=GVNIC,stack-type=IPV4_ONLY,subnet=default \
+  --metadata=tee-image-reference=$TEE_IMAGE_REFERENCE,\
+tee-container-log-redirect=true,\
+tee-env-OPEN_ROUTER_API_KEY=$OPEN_ROUTER_API_KEY,\
+  --maintenance-policy=MIGRATE \
+  --provisioning-model=STANDARD \
+  --service-account=confidential-sa@verifiable-ai-hackathon.iam.gserviceaccount.com \
+  --scopes=https://www.googleapis.com/auth/cloud-platform \
+  --min-cpu-platform="AMD Milan" \
+  --tags=flare-ai,http-server,https-server \
+  --create-disk=auto-delete=yes,\
+boot=yes,\
+device-name=$INSTANCE_NAME,\
+image=projects/confidential-space-images/global/images/confidential-space-debug-250100,\
+mode=rw,\
+size=11,\
+type=pd-standard \
+  --shielded-secure-boot \
+  --shielded-vtpm \
+  --shielded-integrity-monitoring \
+  --reservation-affinity=any \
+  --confidential-compute-type=SEV
+```
