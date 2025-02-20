@@ -1,0 +1,8 @@
+Answer the following question using the provided context.
+Include citations for supporting evidence in your answer.
+
+Question: {query}
+
+Context: {context}
+
+Answer:

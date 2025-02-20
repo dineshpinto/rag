@@ -1,0 +1,4 @@
+{
+    "query": "What is the block time for the Flare blockchain?",
+    "answer": "The block time for the Flare blockchain is approximately **1.8 seconds**. This is evidenced by the context provided in **Document 2-feeds.mdx**, which states: \"FTSOv2's block-latency feeds update incrementally with each new block on Flare, approximately every 1.8 seconds\" (Document 2-feeds.mdx). This indicates that new blocks are produced on the Flare blockchain roughly every 1.8 seconds."
+}
